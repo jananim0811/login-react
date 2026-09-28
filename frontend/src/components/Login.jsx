@@ -45,27 +45,27 @@ function Login({ onLogin }) {
 
     setLoading(true);
 
-    try {
-      const response = await axios.post(
-       https://login-react-backend-d3li.onrender.com/,
-        {
-          email,
-          password,
-        }
-      );
-
-      if (response.data.success) {
-        onLogin(response.data.user);
-      }
-    } catch (error) {
-      if (error.response) {
-        setLoginError(error.response.data.message);
-      } else {
-        setLoginError("Unable to connect to the server");
-      }
-    } finally {
-      setLoading(false);
+try {
+  const response = await axios.post(
+    "https://login-react-backend-d3l1.onrender.com/api/login",
+    {
+      email,
+      password,
     }
+  );
+
+  if (response.data.success) {
+    onLogin(response.data.user);
+  }
+} catch (error) {
+  if (error.response) {
+    setLoginError(error.response.data.message);
+  } else {
+    setLoginError("Unable to connect to the server");
+  }
+} finally {
+  setLoading(false);
+}
   };
 
   return (
